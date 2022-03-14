@@ -5,6 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invoicing</title>
+
+    <link href="/ojt_k3l_pos/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/ojt_k3l_pos/css/bootstrap.min.css">
+    <!-- Custom styles for this template-->
+    <link href="/ojt_k3l_pos/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="/ojt_k3l_pos/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+    <link href="/ojt_k3l_pos/css/fa-css/all.min.css" rel="stylesheet" type="text/css">
+
 </head>
 <body>
     <div><button>Generate</button>&nbsp;<input type="text"></div>
@@ -59,5 +68,13 @@
     <button>EXIT</button>
     </div> <!-- PROTOTYPE BTN_GRP--->
 
+    <!-- scripts -->
+    <!-- Bootstrap core JavaScript-->
+    <script src="/ojt_k3l_pos/js/jquery.min.js"></script>
+    <script src="/ojt_k3l_pos/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/ojt_k3l_pos/js/sb-admin-2.min.js"></script>
+    <script src="/ojt_k3l_pos/js/dataTables.bootstrap4.min.js"></script>
 </body>
 </html>
