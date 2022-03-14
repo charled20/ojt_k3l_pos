@@ -18,9 +18,9 @@
 </head>
 <body>
    
-<div> <!-- First Div-->
+<div id="wrapper"> <!-- First Div-->
     <!-- First UL-->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
     
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
@@ -49,7 +49,7 @@
     <!-- Nav Item - Manage Users -->
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" 
+        <a class="nav-link collapsed" href="pages/manage-users.php" 
             aria-expanded="true" aria-controls="collapseInbox" target="accounts_iframe">
             <i class="fas fa-fw fa-users">
             </i>
@@ -62,7 +62,7 @@
     <!-- Nav Item - Update Product -->
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" 
+        <a class="nav-link collapsed" href="pages/update-product.php" 
             aria-expanded="true" aria-controls="collapseInbox" target="accounts_iframe">
             <i class="fas fa-fw fa-wrench">
             </i>
@@ -75,7 +75,7 @@
     <!-- Nav Item - Invoicing -->
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" 
+        <a class="nav-link collapsed" href="pages/invoicing.php" 
             aria-expanded="true" aria-controls="collapseInbox" target="accounts_iframe">
             <i class="fas fa-fw fa-file-invoice">
             </i>
@@ -89,7 +89,7 @@
     <!-- Nav Item - Project Manager -->
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" 
+        <a class="nav-link collapsed" href="pages/project-manager.php" 
             aria-expanded="true" aria-controls="collapseInbox" target="accounts_iframe">
             <i class="fas fa-fw fa-user">
             </i>
@@ -102,7 +102,7 @@
     <!-- Nav Item - Post Collection -->
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" 
+        <a class="nav-link collapsed" href="pages/post-collection.php" 
             aria-expanded="true" aria-controls="collapseInbox" target="accounts_iframe">
             <i class="fas fa-fw fa-inbox">
             </i>
@@ -116,7 +116,7 @@
     <!-- Nav Item - Project Monitor -->
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" 
+        <a class="nav-link collapsed" href="pages/project-monitor.php" 
             aria-expanded="true" aria-controls="collapseInbox" target="accounts_iframe">
             <i class="fas fa-fw fa-chart-pie">
             </i>
@@ -130,7 +130,53 @@
 
     <!-- End of Sidebar -->
 
+<!-- Content Wrapper -->
+<div id="content-wrapper" class="d-flex flex-column">
 
+    <!-- Main Content -->
+    <div id="content">
+
+        <!-- Topbar (White) -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+            <!-- Sidebar Toggle (Topbar) -->
+            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                <i class="fa fa-bars"></i>
+            </button>
+
+            <!-- Topbar Navbar -->
+            <ul class="navbar-nav ml-auto">
+
+                <!-- Nav Item - User Information -->
+                <li class="nav-item dropdown no-arrow">
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                        <div class="col-sm-12 minimal-text "> Admin_User </div>
+                        </span>
+
+                        <img class="dropdown img-profile rounded-circle"
+                            src="img/undraw_profile_3.svg">
+                          
+                    </a>
+
+                    <div class="dropdown-content">
+                            
+                              <a href="#" id="manage_accts" class="col-sm-8 manage-acc-button" data-toggle="modal" data-target="#manage_accounts"><p class="logout-text">MANAGE ACCOUNT</p></a>
+                              <hr class="mb-1">
+                              <a href="php/acct-logout.php" class="col-sm-8 logout-button"><p class="logout-text">LOGOUT</p></a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <!-- End of Topbar -->
+
+        <!-- Start of Iframe -->
+
+        <div class="embed-responsive embed-responsive-16by9" style="height: 80vh">
+        <iframe class="embed-responsive-item" src="pages/manage-users.php" name="accounts_iframe" id="accounts_iframe" allowfullscreen></iframe>
+        </div>
+        <!-- End of Iframe -->
 
 </div> <!-- First Div-->
 
