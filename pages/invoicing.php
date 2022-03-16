@@ -55,18 +55,49 @@
 
     <br>
 
+    
     <div> <!-- PROTOTYPE BTN_GRP--->
-    <button>SAVE</button>
-    <button>CHANGE QTY</button>
-    <button>PLU</button>
-    <button>NEW TRANSACTION</button>
-    <button>PRINT PREVIEW</button>
+
+    <button  data-id="SAVE">SAVE</button>
+    <button  data-id="CHANGE QTY">CHANGE QTY</button>
+    <button  data-id="PLU">PLU</button>
+    <button  data-id="NEW TRANSACTION">NEW TRANSACTION</button>
+    <button  data-id="PRINT PREVIEW">PRINT PREVIEW</button>
     &nbsp;
     &nbsp;
     &nbsp;
-    <button>DELETE ITEMS</button>
-    <button>EXIT</button>
+    <button  data-id="DELETE ITEMS">DELETE ITEMS</button>
+    <button  data-id="EXIT">EXIT</button>
+
     </div> <!-- PROTOTYPE BTN_GRP--->
+
+    <!-- modal start-->
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal_body_title"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- Modal Body-->
+            <div class="modal-body" id="modal_body_content">
+                <!-- Modal Body Content-->
+            </div>
+            <!-- Modal Body -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal end-->
+
 
     <!-- scripts -->
     <!-- Bootstrap core JavaScript-->
@@ -76,5 +107,9 @@
     <!-- Custom scripts for all pages-->
     <script src="/ojt_k3l_pos/js/sb-admin-2.min.js"></script>
     <script src="/ojt_k3l_pos/js/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Custom script (coded) -->
+    <script src="/ojt_k3l_pos/js/invoicing-js.js"></script>
+    
 </body>
 </html>
