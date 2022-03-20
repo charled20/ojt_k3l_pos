@@ -1,3 +1,14 @@
+<?php 
+session_start();
+    if(!isset($_SESSION["username"])){
+        header("Location: login.php");
+    }
+    else {
+        $logged_user = $_SESSION["username"];
+        $security_level = $_SESSION['security_lvl'];
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +31,18 @@
    
 <div id="wrapper"> <!-- First Div-->
     <!-- First UL-->
-    <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
+    <?php 
+    if($security_level==2){
+        echo "<ul class='navbar-nav bg-gradient-success sidebar sidebar-dark accordion' id='accordionSidebar'>";
+    }
+    else if($security_level==1){
+        echo "<ul class='navbar-nav bg-gradient-primary sidebar sidebar-dark accordion' id='accordionSidebar'>";
+    }
+    else{
+        echo "<ul class='navbar-nav bg-gradient-dark sidebar sidebar-dark accordion' id='accordionSidebar'>";
+    }
+    ?>
+    
     
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
