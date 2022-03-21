@@ -1,3 +1,7 @@
+<?php 
+require_once('../php/db-config.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +12,7 @@
 </head>
 <body>
     <button>EDIT</button>
+
     <br>
     <table>
         <tr>
@@ -30,86 +35,78 @@
                 P4
             </th>
         </tr>
-        <tr>
-            <td>
-                100
-            </td>
-            <td>
-                USER1
-            </td>
-            <td>
-                <input type="checkbox" checked>
-            </td>
-            <td>
-                <input type="checkbox"checked>
-            </td>
-            <td>
-                <input type="checkbox">
-            </td>
-            <td>
-                <input type="checkbox" checked>
-            </td>
+
+        <?php 
+        $tbl_users_query = "SELECT * FROM tblusers";
+        $tbl_users_rec = mysqli_query($con, $tbl_users_query);
+        while($tbl_users_row = mysqli_fetch_array($tbl_users_rec))
+            {
+                $tbl_users_row['PROCES1'];            
+        ?>
+        <?php 
+        echo '<tr>';   
+        ?>     
+            <?php
+            echo "<td>";
+                echo $tbl_users_row['UserCODE'];
+            echo "</td>";
+            ?>
+            <?php
+            echo "<td>";
+                echo $tbl_users_row['UserName'];
+            echo "</td>";
+            ?>
+            <?php 
+            echo "<td>";                
+                $p1 = $tbl_users_row['PROCES1'];
+                if($p1 > 0){
+                    echo "<input type='checkbox' checked>";
+                }
+                else{
+                    echo "<input type='checkbox'>";
+                }                                
+            echo "</td>";
+            ?>
+            <?php 
+            echo "<td>";                
+                $p2 = $tbl_users_row['PROCES2'];
+                if($p2 > 0){
+                    echo "<input type='checkbox' checked>";
+                }
+                else{
+                    echo "<input type='checkbox'>";
+                }                                
+            echo "</td>";
+            ?>
+            <?php 
+            echo "<td>";                
+                $p3 = $tbl_users_row['PROCES3'];
+                if($p3 > 0){
+                    echo "<input type='checkbox' checked>";
+                }
+                else{
+                    echo "<input type='checkbox'>";
+                }                                
+            echo "</td>";
+            ?>
+            <?php 
+            echo "<td>";                
+                $p4 = $tbl_users_row['PROCES4'];
+                if($p4 > 0){
+                    echo "<input type='checkbox' checked>";
+                }
+                else{
+                    echo "<input type='checkbox'>";
+                }                                
+            echo "</td>";
+            ?>
         </tr>
-        <tr>
-            <td>
-                102
-            </td>
-            <td>
-                USER2
-            </td>
-            <td>
-                <input type="checkbox" checked>
-            </td>
-            <td>
-                <input type="checkbox">
-            </td>
-            <td>
-                <input type="checkbox">
-            </td>
-            <td>
-                <input type="checkbox">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                103
-            </td>
-            <td>
-                USER3
-            </td>
-            <td>
-                <input type="checkbox" checked>
-            </td>
-            <td>
-                <input type="checkbox" checked>
-            </td>
-            <td>
-                <input type="checkbox" checked>
-            </td>
-            <td>
-                <input type="checkbox" >
-            </td>
-        </tr>
-        <tr>
-            <td>
-                104
-            </td>
-            <td>
-                USER4
-            </td>
-            <td>
-                <input type="checkbox">
-            </td>
-            <td>
-                <input type="checkbox">
-            </td>
-            <td>
-                <input type="checkbox" checked>
-            </td>
-            <td>
-                <input type="checkbox" checked>
-            </td>
-        </tr>
+        
+        
+        <?php 
+        }
+        ?>
+        
     </table>
     PROCESS P1: INVOICING <br>
     PROCESS P2: PROJECT MANAGER <br>

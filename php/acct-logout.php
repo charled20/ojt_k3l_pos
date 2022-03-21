@@ -6,10 +6,8 @@ session_unset();
 session_destroy();
 
 echo "
-    <script type=\"text/javascript\">alert(\"Logout Successful!\");
+    <script type=\"text/javascript\">
     window.location.href = \"/ojt_k3l_pos/index.php\";
     </script>
     ";
-
-
 ?>

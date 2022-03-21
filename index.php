@@ -48,7 +48,7 @@ session_start();
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
         <div class="sidebar-brand-icon rotate-n-15">
         </div>
-        <div class="sidebar-brand-text mx-3">K3L POS 2.0</div>
+        <div class="sidebar-brand-text mx-3">K3L POS 2.1</div>
     </a>
 
     <!-- Divider -->
@@ -69,17 +69,25 @@ session_start();
     </div>
 
     <!-- Nav Item - Manage Users -->
+    <?php 
+    if($security_level<2){
 
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="pages/manage-users.php" 
-            aria-expanded="true" aria-controls="collapseInbox" target="accounts_iframe">
-            <i class="fas fa-fw fa-users">
+    }
+    else{
+        echo "<li class='nav-item'>
+        <a class='nav-link collapsed' href='pages/manage-users.php' 
+            aria-expanded='true' aria-controls='collapseInbox' target='accounts_iframe'>
+            <i class='fas fa-fw fa-users'>
             </i>
             <span>Manage Users</span>
         </a>
     </li>
 
-    <hr class="sidebar-divider d-none d-md-block">
+    <hr class='sidebar-divider d-none d-md-block'>";
+    }
+    ?>
+
+    
 
     <!-- Nav Item - Update Product -->
 
@@ -174,7 +182,7 @@ session_start();
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                        <div class="col-sm-12 minimal-text "> Admin_User </div>
+                        <div class="col-sm-12 minimal-text "> <?php echo $logged_user;?> </div>
                         </span>
 
                         <img class="dropdown img-profile rounded-circle"
@@ -194,9 +202,19 @@ session_start();
         <!-- End of Topbar -->
 
         <!-- Start of Iframe -->
-
+        
         <div class="embed-responsive embed-responsive-16by9" style="height: 80vh">
-        <iframe class="embed-responsive-item" src="pages/manage-users.php" name="accounts_iframe" id="accounts_iframe" allowfullscreen></iframe>
+
+        <?php 
+        if($security_level<2){
+            echo "<iframe class='embed-responsive-item' src='pages/update-product.php' name='accounts_iframe' id='accounts_iframe' allowfullscreen></iframe>";
+        }
+        else{
+            echo "<iframe class='embed-responsive-item' src='pages/manage-users.php' name='accounts_iframe' id='accounts_iframe' allowfullscreen></iframe>";
+        }
+        ?>
+
+        
         </div>
         <!-- End of Iframe -->
 

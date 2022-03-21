@@ -9,13 +9,6 @@ else {
 }
 ?>
 
-<?php
-    $hostname = "localhost";
-    $username = "root";
-    $password = "";
-    $databaseName = "ojtdb";
-    $con = mysqli_connect($hostname, $username, $password, $databaseName);
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -55,7 +48,7 @@ else {
                         $sql_query = "select * from tblusers where UserName ='" .$uname."' and Password='".$password."'";
                         $result = mysqli_query($con,$sql_query);
                         $row = mysqli_fetch_array($result); 
-                        $security_lvl = $row['SecurityLevel'];               
+                        $security_lvl = $row['SecurityLevel'];      
                         if($row > 0){
                             $_SESSION['username'] = $uname;
                             $_SESSION['security_lvl'] = $security_lvl;
