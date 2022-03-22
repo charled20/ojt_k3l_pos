@@ -1,7 +1,7 @@
 <?php 
 session_start();
     if(!isset($_SESSION["username"])){
-        header("Location: login.php");
+        header("Location: http://localhost/ojt_k3l_pos/login");
     }
     else {
         $logged_user = $_SESSION["username"];

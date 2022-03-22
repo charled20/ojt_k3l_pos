@@ -52,7 +52,7 @@ else {
                         if($row > 0){
                             $_SESSION['username'] = $uname;
                             $_SESSION['security_lvl'] = $security_lvl;
-                            header("Location: index.php");
+                            header("Location: http://localhost/ojt_k3l_pos/index");
                         }
                         else{
                             echo "Invalid username or password";
