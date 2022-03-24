@@ -7,7 +7,7 @@ session_destroy();
 
 echo "
     <script type=\"text/javascript\">
-    window.location.href = \"/ojt_k3l_pos/index.php\";
+    window.location.href = \"http://localhost/ojt_k3l_pos/index\";
     </script>
     ";
 ?>

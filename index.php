@@ -15,7 +15,7 @@ session_start();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index</title>
+    <title>K3L POS Dashboard</title>
 
     <link href="css/main.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
@@ -226,7 +226,6 @@ session_start();
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-    <script src="js/dataTables.bootstrap4.min.js"></script>
 
 </body>
 </html>
