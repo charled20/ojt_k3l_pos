@@ -1,0 +1,34 @@
+QrtyDeliveryWithCost - SELECT QryDelivery.ProductID, QryDelivery.SQTY, QryDelivery.UNIT, QryDelivery.INvoiceNum, [SQTY]*[selPrice] AS CostAtSelPrice, [Sqty]*[UnitpCost] AS AmountAtUnitCost, QryDelivery.SelPrice, QryDelivery.UnitPcost, TBLDelivery.TransactionDATEnum, TBLDelivery.DateEncoded, TBLDelivery.ProjectCode, TBLDelivery.userCod
+FROM QryDelivery INNER JOIN TBLDelivery ON QryDelivery.INvoiceNum = TBLDelivery.InVOICENumber;
+
+QryCollection - SELECT TBLCollection.ORCode, TBLCollection.ORdate, TBLCollection.Amount, TBLCollection.CheckNumber, TBLCollection.ProjectCode, TBLCollection.InvoiceNum, TBLCollection.Particulars, TBLCollection.ORDateNum, RefPROJECT.PRojectNAME, RefPROJECT.LOCATION, TBLCollection.ORID, CDate([ORDateNum]) AS ORdat, TBLCollection.UserID, TBLUSERS.UserName
+FROM TBLUSERS INNER JOIN (RefPROJECT INNER JOIN TBLCollection ON RefPROJECT.ProjectKOD = TBLCollection.ProjectCode) ON TBLUSERS.UserCODE = TBLCollection.UserID;
+
+QryCollectionReport - SELECT TBLCollection.ORCode, TBLCollection.ORdate, TBLCollection.Amount, [particulars]+"- Check no: "+[checkNumber] AS Particular, TBLCollection.ProjectCode, RefPROJECT.PRojectNAME, RefPROJECT.ProJECTCOST, TBLCollection.Particulars, CDate([ORDateNum]) AS ORDat, TBLCollection.ORDateNum
+FROM RefPROJECT INNER JOIN TBLCollection ON RefPROJECT.ProjectKOD = TBLCollection.ProjectCode;
+
+QryDelivery - SELECT TBLDeliveryDetails.ProductID, Sum(TBLDeliveryDetails.QTY) AS SQTY, TBLDeliveryDetails.SellingPrice AS SelPrice, TBLDeliveryDetails.UnitCost AS UnitPcost, TBLDeliveryDetails.UNIT, TBLDeliveryDetails.INvoiceNum
+FROM TBLDelivery INNER JOIN TBLDeliveryDetails ON TBLDelivery.InVOICENumber=TBLDeliveryDetails.INvoiceNum
+GROUP BY TBLDeliveryDetails.ProductID, TBLDeliveryDetails.SellingPrice, TBLDeliveryDetails.UnitCost, TBLDeliveryDetails.UNIT, TBLDeliveryDetails.INvoiceNum;
+
+QryDeliveryWdProductName - SELECT QrtyDeliveryWithCost.ProductID, TblProduct.ProductName, QrtyDeliveryWithCost.SQTY, QrtyDeliveryWithCost.UNIT, QrtyDeliveryWithCost.CostAtSelPrice, QrtyDeliveryWithCost.AmountAtUnitCost, QrtyDeliveryWithCost.SelPrice, QrtyDeliveryWithCost.UnitPcost, QrtyDeliveryWithCost.TransactionDATEnum, QrtyDeliveryWithCost.DateEncoded, QrtyDeliveryWithCost.ProjectCode, RefPROJECT.PRojectNAME, RefPROJECT.LOCATION, RefPROJECT.Duration, QrtyDeliveryWithCost.INvoiceNum, TBLUSERS.UserName
+FROM TBLUSERS INNER JOIN ((QrtyDeliveryWithCost INNER JOIN TblProduct ON QrtyDeliveryWithCost.ProductID = TblProduct.ProductID) INNER JOIN RefPROJECT ON QrtyDeliveryWithCost.ProjectCode = RefPROJECT.ProjectKOD) ON TBLUSERS.UserCODE = QrtyDeliveryWithCost.userCod;
+
+QryforUnionCollection - SELECT QryCollectionReport.ORDat, QryCollectionReport.ORCode, 0 AS Debit, QryCollectionReport.Amount AS Credit, "Collection-"+[ORCODE]+[Particulars] AS Particularrs, QryCollectionReport.ProjectCode, QryCollectionReport.PRojectNAME, QryCollectionReport.ORDateNum
+FROM QryCollectionReport;
+
+QryForUnionProjectMonitor - SELECT QRYPRojectMonitor.DateEncoded, QRYPRojectMonitor.INvoiceNum, QRYPRojectMonitor.SumOfCostAtSelPrice AS Tamount, 0 AS Credit, " Delivery-"+[invoicenum] AS Particular, QRYPRojectMonitor.ProjectCode, QRYPRojectMonitor.PRojectNAME, QRYPRojectMonitor.TransactionDATEnum, QRYPRojectMonitor.SumOfCostAtSelPrice
+FROM QRYPRojectMonitor;
+
+QryProjectMonitor - SELECT QrtyDeliveryWithCost.INvoiceNum, Sum(QrtyDeliveryWithCost.CostAtSelPrice) AS SumOfCostAtSelPrice, QrtyDeliveryWithCost.ProjectCode, Sum(QrtyDeliveryWithCost.AmountAtUnitCost) AS SumOfAmountAtUnitCost, TBLDelivery.TransactionDATEnum, TBLDelivery.DateEncoded, RefPROJECT.PRojectNAME, RefPROJECT.LOCATION, RefPROJECT.ProJECTCOST
+FROM (QrtyDeliveryWithCost INNER JOIN TBLDelivery ON QrtyDeliveryWithCost.INvoiceNum=TBLDelivery.InVOICENumber) INNER JOIN RefPROJECT ON QrtyDeliveryWithCost.ProjectCode=RefPROJECT.ProjectKOD
+GROUP BY QrtyDeliveryWithCost.INvoiceNum, QrtyDeliveryWithCost.ProjectCode, TBLDelivery.TransactionDATEnum, TBLDelivery.DateEncoded, RefPROJECT.PRojectNAME, RefPROJECT.LOCATION, RefPROJECT.ProJECTCOST;
+
+QryProjectName - SELECT RefPROJECT.ProjectKOD, [Projectname]+"- "+Str([projectKod]) AS PROJName, RefPROJECT.PRojectNAME, RefPROJECT.LOCATION, RefPROJECT.Duration, RefPROJECT.ProJECTCOST, RefPROJECT.ProjectStartDate
+FROM RefPROJECT;
+
+QryProjectBalance - Select dateEncoded , INvoiceNum, Tamount , Credit ,  Particular,  TransactionDatenum, projectCode, ProjectName
+From QRyforUnionProjectMonitor
+UNION ALL Select  ORdat, ORcode,  Debit, Credit , Particularrs, Ordatenum, projectCode, ProjectName
+from QryforUnionCollection;
+
